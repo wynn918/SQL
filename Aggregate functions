@@ -1,0 +1,17 @@
+sum()
+count()
+max()
+min()
+avg()
+
+select *, avg(math_score) over (partition by class_name) as avg_math_score,
+       max(math_score) over (partition by class_name) as max_math_score,
+       min(math_score) over (partition by class_name) as min_math_score,
+       count(case when math_score>=60 then user_id end) over (partition by class_name) as math_pass_cnt
+from score
+order by user_id
+#case when:
+  case when condition1 then result1
+  else result
+  end;
+#'partition by' similar to 'group by'
